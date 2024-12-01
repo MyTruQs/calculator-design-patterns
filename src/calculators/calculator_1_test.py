@@ -1,9 +1,24 @@
-def test_something():
-    print()
-    print('Estou aqui no teste 1')
-    pass
+from typing import Dict
+from .calculator_1 import Calculator1
 
-def test_something2():
+class MockRequest:
+    def __init__(self, body: Dict) -> None:
+        self.json = body
+
+def test_calculate():
+    mock_request = MockRequest(body={ "number": 10 })
+    
+    calculator_1 = Calculator1()
+    
+    response = calculator_1.calculate(mock_request)
     print()
-    print('Estou aqui no teste 2')
-    pass
+    print(response)
+    
+    # Formato da resposta
+    assert "data" in response
+    assert "Calculator" in response["data"]
+    assert "result" in response["data"]
+    
+    # Assertividade da Resposta
+    assert response["data"]["result"] == 22.67
+    assert response["data"]["Calculator"] == 1
