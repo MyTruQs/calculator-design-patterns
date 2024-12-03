@@ -22,7 +22,7 @@ class Calculator3:
         multiplication = self.__calculate_multiplication(input_data)
         self.__verify_results(variance, multiplication)
         
-        formated_response = self.__format_response(variance)
+        formated_response = self.__format_response(variance, multiplication)
         return formated_response
         
     def __validate_body(self, body: Dict) -> List[float]:
@@ -42,14 +42,15 @@ class Calculator3:
         return multiplication
     
     def __verify_results(self, variance: float, multiplication: float) -> None:
-        if variance > multiplication:
-            raise Exception("Fallha no processo: Variância maior que a multiplicação dos números.")
+        if variance < multiplication:
+            raise Exception("Fallha no processo: Variância menor que a multiplicação dos números.")
         
-    def __format_response(self, variance: float) -> Dict:
+    def __format_response(self, variance: float, multiplication: float) -> Dict:
         return {
             "data": {
                 "Calculator": 3,
-                "value": variance,
+                "variance": float(variance),
+                "multiplication": multiplication,
                 "Success": True
             }
         }
