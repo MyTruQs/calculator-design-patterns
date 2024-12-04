@@ -8,7 +8,7 @@ class Calculator4:
     Quarta Calculadora
     
     * N números são colocados como entrada.
-    * Retornar a média dos números.
+    * Retornar a média dos números. 
     """
         
     def calculate(self, request: FlaskRequest) -> Dict: # type: ignore
